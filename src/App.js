@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import Form from "./components/Form";
+import Header from "./components/Header";
+import Stats from "./components/Stats";
+import Graph from "./components/Graph";
+import Footer from "./components/Footer";
+import { getAsyncApi } from "./context/covid/covidSlice";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(getAsyncApi());
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	return (
+		<div className="container p-5">
+			<Header />
+			<Stats />
+			<Form />
+			<Graph />
+			<Footer />
+		</div>
+	);
 }
 
 export default App;
