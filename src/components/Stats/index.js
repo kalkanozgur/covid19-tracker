@@ -5,6 +5,7 @@ import Card from "./Card";
 function Stats() {
 	const data = useSelector((state) => state.covid.data);
 	const { lastUpdate, confirmed, deaths, recovered } = data;
+	// const dateStr =  Date(2022-10-07T21:22:33.000Z) getDay, getMount, getYear
 
 	return (
 		<div className="flex flex-row mx-auto py-8 justify-center items-center gap-2 w-11/12">

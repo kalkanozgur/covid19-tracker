@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchApi } from "../api";
+import { fetchApi, fetchCountryList } from "../api";
 
 export const getAsyncApi = createAsyncThunk(
 	"covid/getAsyncApi",
@@ -8,10 +8,16 @@ export const getAsyncApi = createAsyncThunk(
 	}
 );
 
+export const getAsyncCountryList = createAsyncThunk(
+	"covid/getAsyncCountryList",
+	async () => await fetchCountryList()
+);
+
 const covidSlice = createSlice({
 	name: "covid",
 	initialState: {
 		data: [],
+		countryList: [],
 		isLoading: true,
 		error: null,
 	},
@@ -24,6 +30,18 @@ const covidSlice = createSlice({
 			state.data = action.payload;
 		},
 		[getAsyncApi.rejected]: (state, action) => {
+			state.isLoading = true;
+			state.error = action.payload.error.message;
+		},
+		[getAsyncCountryList.pending]: (state, action) => {
+			state.isLoading = true;
+		},
+		[getAsyncCountryList.fulfilled]: (state, action) => {
+			state.isLoading = false;
+			state.countryList = action.payload;
+			console.log(state.countryList);
+		},
+		[getAsyncCountryList.rejected]: (state, action) => {
 			state.isLoading = true;
 			state.error = action.payload.error.message;
 		},

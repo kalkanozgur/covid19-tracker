@@ -5,12 +5,13 @@ import Header from "./components/Header";
 import Stats from "./components/Stats";
 import Graph from "./components/Graph";
 import Footer from "./components/Footer";
-import { getAsyncApi } from "./context/covid/covidSlice";
+import { getAsyncApi, getAsyncCountryList } from "./context/covid/covidSlice";
 
 function App() {
 	const dispatch = useDispatch();
 	useEffect(() => {
 		dispatch(getAsyncApi());
+		dispatch(getAsyncCountryList());
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
