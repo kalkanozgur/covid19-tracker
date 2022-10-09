@@ -39,7 +39,6 @@ const covidSlice = createSlice({
 		[getAsyncCountryList.fulfilled]: (state, action) => {
 			state.isLoading = false;
 			state.countryList = action.payload;
-			console.log(state.countryList);
 		},
 		[getAsyncCountryList.rejected]: (state, action) => {
 			state.isLoading = true;
