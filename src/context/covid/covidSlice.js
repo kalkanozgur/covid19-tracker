@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
 import { fetchApi, fetchCountryList } from "../api";
 
 export const getAsyncApi = createAsyncThunk(
@@ -18,33 +19,51 @@ const covidSlice = createSlice({
 	initialState: {
 		data: [],
 		countryList: [],
-		isLoading: true,
+		isLoading: true, //tüm reducerlar fulfilled olduğunda isLoading false olsun istiyorum
 		error: null,
+		getAsyncApi: {
+			isLoading: true,
+		},
+		getAsyncCountryList: {
+			isLoading: true,
+		},
+	},
+	reducers: {
+		checkLoading: (state) => {
+			(state.getAsyncApi.isLoading === false) &
+			(state.getAsyncCountryList.isLoading === false)
+				? (state.isLoading = false)
+				: (state.isLoading = true);
+			console.log(state.getAsyncApi.isLoading);
+			console.log(state.getAsyncCountryList.isLoading);
+			console.log(state.isLoading);
+		},
 	},
 	extraReducers: {
 		[getAsyncApi.pending]: (state) => {
-			state.isLoading = true;
+			state.getAsyncApi.isLoading = true;
 		},
 		[getAsyncApi.fulfilled]: (state, action) => {
-			state.isLoading = false;
+			state.getAsyncApi.isLoading = false;
 			state.data = action.payload;
 		},
 		[getAsyncApi.rejected]: (state, action) => {
-			state.isLoading = true;
+			state.getAsyncApi.isLoading = true;
 			state.error = action.payload.error.message;
 		},
-		[getAsyncCountryList.pending]: (state, action) => {
-			state.isLoading = true;
+		[getAsyncCountryList.pending]: (state) => {
+			state.getAsyncCountryList.isLoading = true;
 		},
 		[getAsyncCountryList.fulfilled]: (state, action) => {
-			state.isLoading = false;
+			state.getAsyncCountryList.isLoading = false;
 			state.countryList = action.payload;
 		},
 		[getAsyncCountryList.rejected]: (state, action) => {
-			state.isLoading = true;
+			state.getAsyncCountryList.isLoading = true;
 			state.error = action.payload.error.message;
 		},
 	},
 });
+export const { checkLoading } = covidSlice.actions;
 
 export default covidSlice.reducer;

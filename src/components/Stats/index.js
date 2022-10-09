@@ -2,9 +2,11 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Card from "./Card";
 
-function Stats() {
-	const data = useSelector((state) => state.covid.data);
+function Stats({ data }) {
 	const { lastUpdate, confirmed, deaths, recovered } = data;
+	const confirmedValue = confirmed.value;
+	const deathsValue = deaths.value;
+	const recoveredValue = recovered.value;
 	// const dateStr =  Date(2022-10-07T21:22:33.000Z) getDay, getMount, getYear
 
 	return (
@@ -12,7 +14,7 @@ function Stats() {
 			<Card
 				title="Infected"
 				subtitle="Number of infect cases of"
-				// value={confirmedValue}
+				value={confirmedValue}
 				date={lastUpdate}
 				color={"blue"}
 				className={"flex-1"}
@@ -20,7 +22,7 @@ function Stats() {
 			<Card
 				title="Recovered"
 				subtitle={"Number of recoveries from"}
-				// value={recoveredValue}
+				value={recoveredValue}
 				date={lastUpdate}
 				color={"green"}
 				className={"flex-1"}
@@ -28,7 +30,7 @@ function Stats() {
 			<Card
 				title="Deaths"
 				subtitle={"Number of deaths caused"}
-				// value={deathsValue}
+				value={deathsValue}
 				date={lastUpdate}
 				color={"red"}
 				className={"flex-1"}
@@ -36,7 +38,7 @@ function Stats() {
 			<Card
 				title="Active"
 				subtitle={"Number of active cases of"}
-				// value={confirmedValue - deathsValue}
+				value={confirmedValue - deathsValue}
 				date={lastUpdate}
 				color={"orange"}
 				className={"flex-1"}

@@ -15,7 +15,7 @@ function Card({ title, subtitle, value, date, color }) {
 			)}
 		>
 			<h1 className="py-2">{title}</h1>
-			<h1 className="text-3xl">{"610,854,123"}</h1>
+			<h1 className="text-3xl">{value}</h1>
 			<h2>Last updated at :</h2>
 			<p>{date}</p>
 			<div>{subtitle}</div>
