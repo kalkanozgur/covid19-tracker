@@ -1,5 +1,4 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { useDispatch } from "react-redux";
 import { fetchApi, fetchCountryList } from "../api";
 
 export const getAsyncApi = createAsyncThunk(

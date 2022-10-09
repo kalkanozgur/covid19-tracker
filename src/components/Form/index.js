@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useEffect } from "react";
+import React, { useState, Fragment } from "react";
 
 import { Combobox, Transition } from "@headlessui/react";
 import { useDispatch } from "react-redux";
@@ -22,10 +22,10 @@ function Form({ countryList }) {
 			  });
 
 	return (
-		<div className="flex flex-col items-center justify-center">
-			<div className="w-52 fixed">
+		<div className="flex flex-col items-center justify-center z-50 py-10">
+			<div className="w-52">
 				<Combobox value={selectedCountry} onChange={handleChange}>
-					<div className="">
+					<div className="relative">
 						<Combobox.Input
 							placeholder="Enter country name"
 							onChange={(event) => setQuery(event.target.value)}
@@ -39,9 +39,9 @@ function Form({ countryList }) {
 						leaveTo="opacity-0"
 						afterLeave={() => setQuery("")}
 					>
-						<Combobox.Options className="absolute w-full overflow-auto text-base text-black bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none">
+						<Combobox.Options className="absolute w-52 overflow-auto text-base z-50 text-black bg-white rounded-md shadow-lg max-h-60 ring-1 ring-black ring-opacity-5 focus:outline-none">
 							{filteredCountry.length === 0 && query !== "" ? (
-								<div className="cursor-default select-none relative py-2 px-4 text-gray-700">
+								<div className="cursor-default select-none relative py-2 px-4 text-gray-700 z-50">
 									Nothing found.
 								</div>
 							) : (
@@ -50,7 +50,7 @@ function Form({ countryList }) {
 										key={index}
 										value={country.name}
 										className={({ active }) =>
-											`cursor-default select-none relative py-2 px-4 text-sm ${
+											`cursor-default select-none relative py-2 px-4 text-sm z-50 ${
 												active ? "text-white bg-[#36D4C1]" : "text-gray-900"
 											}`
 										}

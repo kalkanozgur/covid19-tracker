@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Form from "./components/Form";
 import Header from "./components/Header";
@@ -25,14 +25,14 @@ function App() {
 	}, [isLoading]);
 
 	return (
-		<div className="container p-5">
+		<div className="container p-5 flex flex-col items-center justify-center">
 			<Header />
 			{!isLoading ? (
 				<>
 					<Stats data={data} />
 					<Form countryList={countryList} />
 
-					<Graph />
+					<Graph data={data} />
 				</>
 			) : (
 				"Loading"
