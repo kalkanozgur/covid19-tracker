@@ -9,7 +9,7 @@ function Stats({ data }) {
 	// const dateStr =  Date(2022-10-07T21:22:33.000Z) getDay, getMount, getYear
 
 	return (
-		<div className="flex flex-row mx-auto py-8 justify-center items-center gap-2 w-11/12">
+		<div className="flex flex-row mx-auto pt-8 justify-center items-center gap-2 w-11/12">
 			<Card
 				title="Infected"
 				subtitle="Number of infect cases of"

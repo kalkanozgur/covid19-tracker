@@ -48,7 +48,7 @@ function Graph({ data }) {
 				>
 					<CartesianGrid strokeDasharray="8 8" />
 					<XAxis dataKey="name" />
-					<YAxis scale={"auto"} orientation="right" stroke="#82ca9d" />
+					<YAxis scale={"auto"} orientation="right" stroke="#36D4C1" />
 					<Tooltip />
 					{/* <Legend /> */}
 					<Bar dataKey="value" fill="#8884d8" background={{ fill: "#eee" }} />
